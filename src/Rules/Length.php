@@ -21,10 +21,10 @@ class Length extends AbstractValidationRule{
 			switch($param[0])
 			{
 				case 'max':
-					if(strlen($value)>$param[1]) return false;
+					if(strlen($value)>(int)$param[1]) return false;
 					break;
 				case 'min':
-					if(strlen($value)<$param[1]) return false;
+					if(strlen($value)<(int)$param[1]) return false;
 					break;
 			}
 		}

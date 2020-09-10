@@ -18,17 +18,11 @@ class NationalCode extends AbstractValidationRule{
 		if($value!='')
 		{
 			$length=strlen($value);
-
-			if($length>10 || $length<8) return false;
-			if($length===8) $value='00'.$value;
-			elseif($length===9) $value='0'.$value;
-
+			if($length!=10) return false;
 			$check=(int)$value[9];
-
 			$sum=0;
 			for($i=0;$i<=8;$i++) $sum+=(int)$value[$i]*(10-$i);
 			$sum%=11;
-
 			if($sum<2) return $sum===$check ? true : false;
 			else return $sum===11-$check ? true : false;
 		}

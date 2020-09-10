@@ -15,9 +15,7 @@ class Date extends AbstractValidationRule{
 
 	public static function validationRule($value,$param)
 	{
-		if($value!='') return (bool)preg_match(
-			"/^[1-4]\d{3}\/((0[1-6]\/((3[0-1])|([1-2][0-9])|(0[1-9])))|((1[0-2]|(0[7-9]))\/(30|([1-2][0-9])|(0[1-9]))))$/",
-			$value
-		);
+		$value=explode('/',$value);
+		if($value!='') return (bool) checkdate($value[1],$value[2],$value[0]);
 	}
 }

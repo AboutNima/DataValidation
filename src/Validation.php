@@ -23,9 +23,12 @@ class Validation{
 
 	/**
 	 * Validation constructor.
+	 * @param $data
+	 * @param $validation
+	 * @param bool $checkInjectedData
 	 * @throws Exception
 	 */
-	public function __construct()
+	public function __construct($data,$validation,$checkInjectedData=true)
 	{
 		foreach(glob(__DIR__.'/Rules/*.php') as $file)
 		{
@@ -40,6 +43,8 @@ class Validation{
 				throw new Exception("Class '{$file}' must be extends of AbstractValidationRule class");
 			}
 		}
+		AbstractValidationRule::clear();
+		$this->setDataAndRule($data,$validation,$checkInjectedData);
 	}
 
 	/**
@@ -48,7 +53,7 @@ class Validation{
 	 * @param array $validation
 	 * @throws Exception
 	 */
-	public function setDataAndRule(array $data,array $validation,$checkInjectedData=true)
+	public function setDataAndRule(array $data,array $validation,$checkInjectedData)
 	{
 		if($checkInjectedData===true || !empty($checkInjectedData))
 		{
@@ -119,4 +124,3 @@ class Validation{
 	}
 
 }
-$validation=new Validation();

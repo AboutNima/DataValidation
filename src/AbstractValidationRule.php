@@ -83,7 +83,7 @@ abstract class AbstractValidationRule{
 	}
 
 	/**
-	 * Convert data and call processRule function to vlidate input
+	 * Convert data and call processRule function to validate input
 	 * @param array $input
 	 */
 	public static function convert(array $input,$values)
@@ -173,6 +173,15 @@ abstract class AbstractValidationRule{
 	public static function getValidationErrors()
 	{
 		return self::$error;
+	}
+
+	/**
+	 * Clear class
+	 */
+	public static function clear()
+	{
+		self::$error=[];
+		self::$validationsStatus=[];
 	}
 
 }

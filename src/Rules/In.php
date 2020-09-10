@@ -19,8 +19,7 @@ class In extends AbstractValidationRule{
 		if($value!='')
 		{
 			if(!is_array($value)) $value=[$value];
-			foreach($value as $item) $result[]=(bool)in_array($item,$param);
-			return in_array(false,$result) ? false : true;
+			return !(bool)array_diff($value,$param);
 		}
 	}
 }
